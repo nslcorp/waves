@@ -39,7 +39,7 @@ module.exports = app => {
     let user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.json({
+      return res.status(403).json({
         loginSuccess: false,
         message: 'Auth failed, email was not find'
       });
@@ -47,12 +47,14 @@ module.exports = app => {
 
     const isMatch = await user.comparePassword(req.body.password);
     if (!isMatch)
-      return res.json({ loginSuccess: false, message: 'Wrong password' });
+      return res
+        .status(403)
+        .json({ loginSuccess: false, message: 'Wrong password' });
 
     const token = user.token || (await user.generateToken());
     if (!token)
       return res
-        .status(400)
+        .status(403)
         .send({ loginSuccess: false, message: 'Generate token error' });
 
     return res.cookie('w_auth', user.token).json({ loginSuccess: true });
