@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Slider from './slider';
 
 class Home extends Component {
   render() {
     return (
       <div>
         <h3>Home</h3>
+        <Slider />
       </div>
     );
   }
 }
-
-Home.propTypes = {};
 
 export default Home;

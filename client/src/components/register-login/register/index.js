@@ -1,25 +1,33 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import Dialog from '@material-ui/core/Dialog';
+import { connect } from 'react-redux';
 
-class Register extends Component {
+import RegisterForm from './form';
+import { doRegisterUser } from '../../user/actions';
+
+class RegisterPage extends Component {
   render() {
     return (
       <div className="page_wrapper">
         <div className="container">
           <div className="register_login_container">
             <div className="left">
-              <h2>Personal information</h2>
-              <div className="form_block_two">
-                <div className="block">fdsf</div>
-              </div>
+              <RegisterForm onSubmit={this.props.doRegisterUser} />
             </div>
           </div>
         </div>
+        {/*<Dialog open={true}>*/}
+        {/*<div className="dialog_alert">*/}
+        {/*<div>Congradulations!!!</div>*/}
+        {/*<div> You will be reridect to HOME..</div>*/}
+        {/*</div>*/}
+        {/*</Dialog>*/}
       </div>
     );
   }
 }
 
-Register.propTypes = {};
-
-export default Register;
+export default connect(
+  null,
+  { doRegisterUser }
+)(RegisterPage);

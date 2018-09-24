@@ -2,39 +2,36 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import { validate } from './utils';
-
-const renderField = ({ input, label, type = 'text', meta: { touched, error, warning } }) => (
-  <div className="formBlock">
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched &&
-        ((error && <span className="error_label">{error}</span>) ||
-          (warning && <span className="error_label">{warning}</span>))}
-    </div>
-  </div>
-);
-
-const FIELDS = [
-  { name: 'name', label: 'Enter your name' },
-  { name: 'lastName', label: 'Enter your lastname' },
-  { name: 'email', label: 'Enter your email' },
-  { name: 'name', label: 'Enter your password' },
-  { name: 'name', label: 'Confirm your password' }
-];
+import renderField from '../../../shared/render-form-field';
 
 const RegisterForm = props => {
-  const { handleSubmit, pristine, submitting } = props;
+  const { handleSubmit, submitting } = props;
 
   return (
     <div className="signin_wrapper">
       <form onSubmit={handleSubmit}>
-        {FIELDS.map(({ name, label }) => (
-          <Field name={name} label={label} component={renderField} />
-        ))}
+        <h2>Personal information</h2>
+        <Field name="name" label="Enter your name" component={renderField} />
+        <Field name="lastName" label="Enter your lastname" component={renderField} />
+        <Field name="email" label="Enter your email" component={renderField} />
+
+        <h2>Account information</h2>
+        <Field
+          name="password"
+          type="password"
+          label="Enter your password"
+          component={renderField}
+        />
+        <Field
+          name="password2"
+          type="password"
+          label="Confirm your password"
+          component={renderField}
+        />
 
         <div>
           <button type="submit" disabled={submitting}>
-            Log In
+            Register
           </button>
         </div>
       </form>

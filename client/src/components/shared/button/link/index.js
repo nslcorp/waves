@@ -11,7 +11,7 @@ const CustomLink = props => (
 CustomLink.propTypes = {
   title: PropTypes.string.isRequired,
   linkTo: PropTypes.string.isRequired,
-  addStyles: PropTypes.object.isRequired
+  addStyles: PropTypes.object
 };
 
 export default CustomLink;

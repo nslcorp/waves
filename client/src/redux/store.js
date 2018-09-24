@@ -5,9 +5,7 @@ import reduxThunk from 'redux-thunk';
 import reducer from './reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const enhancer = composeEnhancers(
-  applyMiddleware(promiseMiddleware, reduxThunk)
-);
+const enhancer = composeEnhancers(applyMiddleware(promiseMiddleware, reduxThunk));
 const store = createStore(reducer, enhancer);
 
 export default store;

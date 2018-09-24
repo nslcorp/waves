@@ -13,11 +13,10 @@ const Button = ({ type, ...restProps }) => {
 };
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
-
+  type: PropTypes.string,
   title: PropTypes.string.isRequired,
   linkTo: PropTypes.string.isRequired,
-  addStyles: PropTypes.object.isRequired
+  addStyles: PropTypes.object
 };
 
 Button.defaultProps = {
