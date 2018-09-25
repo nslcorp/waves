@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactSlick from 'react-slick';
-import Button from '../../shared/button';
 import Slide from './slide';
 
 const slides = [
