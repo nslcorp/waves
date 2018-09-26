@@ -5,7 +5,7 @@ export const frets = [
   { _id: 24, name: 24 }
 ];
 
-export const price = [
+export const prices = [
   { _id: 0, name: 'Any', array: [] },
   { _id: 1, name: '$0 to $299', array: [0, 299] },
   { _id: 2, name: '$300 to $599', array: [300, 599] },

@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 
-import FilterList from '../../shared/filter-list';
 import { connect } from 'react-redux';
 import { doGetBrands, doGetWoods } from '../actions';
 import * as selectors from '../reducer';
 import * as constants from './constants';
+import FilterList from '../../shared/filter-list';
+import FilterListRadio from '../../shared/filter-list-radio';
 
 class Filters extends Component {
   state = {
@@ -18,9 +19,13 @@ class Filters extends Component {
     this.props.doGetWoods();
   }
 
-  handleFiltersChange = (filters, type) => {
-    this.setState({ [type]: filters });
-    console.log(filters, type);
+  handleFiltersChange = (data, category) => {
+    if (category === 'price') {
+      const priceObj = constants.prices.find(price => price._id === data);
+      return this.setState({ [category]: priceObj.array });
+    }
+
+    this.setState({ [category]: data });
   };
 
   render() {
@@ -45,10 +50,9 @@ class Filters extends Component {
           checked={this.state.woods}
           onFiltersChange={filters => this.handleFiltersChange(filters, 'woods')}
         />
-        <FilterList
+        <FilterListRadio
           title="Price"
-          list={constants.price}
-          checked={this.state.price}
+          list={constants.prices}
           onFiltersChange={filters => this.handleFiltersChange(filters, 'price')}
         />
       </Fragment>

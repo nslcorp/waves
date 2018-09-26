@@ -8,7 +8,7 @@ const handleChange = (callback, id) => () => callback(id);
 
 const CheckboxItem = ({ _id, name, checked, onToggle }) => {
   return (
-    <ListItem key={_id} style={{ padding: '10px 0' }}>
+    <ListItem style={{ padding: '10px 0' }}>
       <ListItemText primary={name} />
       <ListItemSecondaryAction>
         <Checkbox

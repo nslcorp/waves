@@ -3,26 +3,26 @@ import PropTypes from 'prop-types';
 
 import List from '@material-ui/core/List';
 import Collapse from '@material-ui/core/Collapse';
-import Row from './row';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faAngleUp from '@fortawesome/fontawesome-free-solid/faAngleUp';
 import faAngleDown from '@fortawesome/fontawesome-free-solid/faAngleDown';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Radio from '@material-ui/core/Radio';
 
-class CollapseCheckbox extends Component {
+class FilterListRadio extends Component {
   state = {
+    value: '0',
     open: this.props.open
   };
 
   handleTitleClick = () => this.setState({ open: !this.state.open });
 
-  handleCheckboxToggle = value => {
-    const currentIndex = this.props.checked.indexOf(value);
-    const newChecked = [...this.props.checked];
-
-    currentIndex === -1 ? newChecked.push(value) : newChecked.splice(currentIndex, 1);
-    this.props.onFiltersChange(newChecked);
+  handleRadioChange = event => {
+    this.setState({ value: event.target.value });
+    this.props.onFiltersChange(parseInt(event.target.value, 0));
   };
 
   render() {
@@ -35,14 +35,21 @@ class CollapseCheckbox extends Component {
           </ListItem>
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {this.props.list.map(item => (
-                <Row
-                  key={item._id}
-                  {...item}
-                  checked={this.props.checked}
-                  onToggle={this.handleCheckboxToggle}
-                />
-              ))}
+              <RadioGroup
+                aria-label="prices"
+                name="prices"
+                value={this.state.value}
+                onChange={this.handleRadioChange}
+              >
+                {this.props.list.map(item => (
+                  <FormControlLabel
+                    key={item._id}
+                    value={item._id.toString()}
+                    control={<Radio />}
+                    label={item.name}
+                  />
+                ))}
+              </RadioGroup>
             </List>
           </Collapse>
         </List>
@@ -51,16 +58,15 @@ class CollapseCheckbox extends Component {
   }
 }
 
-CollapseCheckbox.propTypes = {
+FilterListRadio.propTypes = {
   open: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  checked: PropTypes.arrayOf(PropTypes.shape).isRequired,
   list: PropTypes.arrayOf(PropTypes.shape).isRequired,
   onFiltersChange: PropTypes.func.isRequired
 };
 
-CollapseCheckbox.defaultProps = {
+FilterListRadio.defaultProps = {
   open: false
 };
 
-export default CollapseCheckbox;
+export default FilterListRadio;
