@@ -15,7 +15,7 @@ const productSchema = mongoose.Schema(
     },
     price: {
       required: true,
-      type: String,
+      type: Number,
       maxLength: 25
     },
     brand: {

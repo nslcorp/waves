@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import List from '@material-ui/core/List';
 import Collapse from '@material-ui/core/Collapse';
-import Row from './row';
+import Row from './row/index';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';

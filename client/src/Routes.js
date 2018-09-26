@@ -1,11 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Layout from './components/hoc/layout';
+import Layout from './components/layout';
 import Home from './components/home';
 import RegisterLogin from './components/register-login';
 import Register from './components/register-login/register';
 import Dashboard from './components/dashboard';
 import ShopPage from './components/shop-page';
+
 import Auth from './components/hoc/auth';
 
 const Routes = () => (
@@ -20,7 +21,5 @@ const Routes = () => (
     </Switch>
   </Layout>
 );
-
-Routes.propTypes = {};
 
 export default Routes;

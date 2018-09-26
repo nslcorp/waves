@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'react-router-dom/es/Link';
 import { connect } from 'react-redux';
-import { getUser } from '../user/reducer';
-import { doLogout } from '../user/actions';
+import { getUser } from '../../user/reducer';
+import { doLogout } from '../../user/actions';
 
 const Header = props => {
   const { isAuth, cart } = props;

@@ -18,7 +18,7 @@ Button.propTypes = {
   linkTo: PropTypes.string,
   addStyles: PropTypes.object,
   classNames: PropTypes.string,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };
 
 Button.defaultProps = {

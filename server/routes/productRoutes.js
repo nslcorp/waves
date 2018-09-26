@@ -3,6 +3,8 @@ const Product = require('../models/product');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 
+const util = require('util');
+
 module.exports = app => {
   app.post('/api/product/article', auth, admin, async (req, res) => {
     try {
@@ -55,6 +57,42 @@ module.exports = app => {
       res.json(products);
     } catch (error) {
       res.status(400).json(error);
+    }
+  });
+
+  app.post('/api/product/shop', async (req, res) => {
+    const order = req.body.order || 'desc';
+    const sortBy = req.body.sortBy || '_id';
+    const limit = parseInt(req.body.limit, 10) || 100;
+    const skip = parseInt(req.body.skip, 10);
+
+    const args = {};
+
+    for (let key in req.body.filters) {
+      if (req.body.filters[key].length > 0) {
+        if (key === 'price') {
+          args[key] = {
+            $gte: req.body.filters[key][0],
+            $lte: req.body.filters[key][1]
+          };
+        } else {
+          args[key] = req.body.filters[key];
+        }
+      }
+    }
+
+    try {
+      const products = await Product.find(args)
+        .populate('brand')
+        .populate('wood')
+        .sort([[sortBy, order]])
+        .skip(skip)
+        .limit(limit)
+        .exec();
+
+      res.json({ products, size: products.length });
+    } catch (error) {
+      res.status(400).send(error);
     }
   });
 };

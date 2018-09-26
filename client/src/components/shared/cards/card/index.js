@@ -7,12 +7,7 @@ const Card = props => {
 
   return (
     <div className={`card_item_wrapper ${props.grid}`}>
-      <div
-        className="image"
-        style={{
-          background: `url(${cardImage}) no-repeat`
-        }}
-      >
+      <div className="image" style={{ background: `url(${cardImage}) no-repeat` }}>
         {' '}
       </div>
       <div className="action_container">
@@ -22,7 +17,7 @@ const Card = props => {
           <div className="name">${props.price}</div>
         </div>
 
-        {props.grid ? (
+        {props.grid === 'bars' ? (
           <div className="description">
             <p>{props.description}</p>
           </div>
@@ -31,7 +26,7 @@ const Card = props => {
         <div className="actions">
           <div className="button_wrapp">
             <Button
-              classNames="card_link"
+              altClass="card_link"
               title="View product"
               linkTo={`/product_detail/${props._id}`}
               addStyles={{ margin: '10px 0 0 0' }}
@@ -52,9 +47,13 @@ const Card = props => {
 };
 
 Card.propTypes = {
+  user: PropTypes.object,
+  _id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
-  images: PropTypes.arrayOf(PropTypes.shape).isRequired
+  price: PropTypes.number.isRequired,
+  images: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  description: PropTypes.string.isRequired,
+  brand: PropTypes.object.isRequired
 };
 
 export default Card;

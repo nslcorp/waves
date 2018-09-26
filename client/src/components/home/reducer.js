@@ -18,5 +18,5 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getBySell = state => state.product.bySell;
-export const getByArrival = state => state.product.byArrival;
+export const getBySell = state => state.home.bySell;
+export const getByArrival = state => state.home.byArrival;

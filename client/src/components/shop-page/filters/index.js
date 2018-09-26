@@ -1,31 +1,33 @@
 import React, { Component, Fragment } from 'react';
 
 import { connect } from 'react-redux';
-import { doGetBrands, doGetWoods } from '../actions';
-import * as selectors from '../reducer';
+import { doGetBrands, doGetWoods, doToggleCheckbox, doToggleRadio } from './actions';
+import * as selectors from './reducer';
+import * as productSelectors from '../products/reducer';
 import * as constants from './constants';
-import FilterList from '../../shared/filter-list';
-import FilterListRadio from '../../shared/filter-list-radio';
+import FilterList from './filter-list';
+import FilterListRadio from './filter-list-radio';
+import { doGetProducts } from '../products/actions';
 
 class Filters extends Component {
-  state = {
-    brands: [],
-    frets: [],
-    woods: [],
-    price: []
-  };
   componentDidMount() {
     this.props.doGetBrands();
     this.props.doGetWoods();
   }
 
-  handleFiltersChange = (data, category) => {
-    if (category === 'price') {
-      const priceObj = constants.prices.find(price => price._id === data);
-      return this.setState({ [category]: priceObj.array });
-    }
+  handleToggleCheckbox = (data, filterType) => {
+    this.props.doToggleCheckbox(data, filterType);
+    const filters = { ...this.props.filters, [filterType]: data };
+    this.props.doGetProducts(0, this.props.limit, filters);
+  };
 
-    this.setState({ [category]: data });
+  handleToggleRadio = (value, filterType) => {
+    const { limit } = this.props;
+
+    this.props.doToggleRadio(value, filterType);
+    const priceObj = constants.prices.find(price => price._id === value);
+    const filters = { ...this.props.filters, [filterType]: priceObj.array };
+    this.props.doGetProducts(0, limit, filters);
   };
 
   render() {
@@ -34,26 +36,26 @@ class Filters extends Component {
         <FilterList
           open
           title="Brands"
-          list={this.props.brands}
-          checked={this.state.brands}
-          onFiltersChange={filters => this.handleFiltersChange(filters, 'brands')}
+          list={this.props.brand}
+          checked={this.props.filters.brand}
+          onFiltersChange={filters => this.handleToggleCheckbox(filters, 'brand')}
         />
         <FilterList
           title="Frets"
           list={constants.frets}
-          checked={this.state.frets}
-          onFiltersChange={filters => this.handleFiltersChange(filters, 'frets')}
+          checked={this.props.filters.frets}
+          onFiltersChange={filters => this.handleToggleCheckbox(filters, 'frets')}
         />
         <FilterList
           title="Woods"
-          list={this.props.woods}
-          checked={this.state.woods}
-          onFiltersChange={filters => this.handleFiltersChange(filters, 'woods')}
+          list={this.props.wood}
+          checked={this.props.filters.wood}
+          onFiltersChange={filters => this.handleToggleCheckbox(filters, 'wood')}
         />
         <FilterListRadio
           title="Price"
           list={constants.prices}
-          onFiltersChange={filters => this.handleFiltersChange(filters, 'price')}
+          onFiltersChange={filters => this.handleToggleRadio(filters, 'price')}
         />
       </Fragment>
     );
@@ -61,12 +63,15 @@ class Filters extends Component {
 }
 
 const mapStateToProps = state => ({
-  brands: selectors.getBrands(state),
-  woods: selectors.getWoods(state)
+  brand: selectors.getBrand(state),
+  wood: selectors.getWood(state),
+  skip: productSelectors.getSkip(state),
+  limit: productSelectors.getLimit(state),
+  filters: selectors.getFilters(state)
 });
 const withConnect = connect(
   mapStateToProps,
-  { doGetBrands, doGetWoods }
+  { doGetBrands, doGetWoods, doGetProducts, doToggleCheckbox, doToggleRadio }
 );
 
 export default withConnect(Filters);

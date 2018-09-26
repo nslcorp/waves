@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { doGetProductsByArrival, doGetProductsBySell } from '../product/actions';
-import { getByArrival, getBySell } from '../product/reducer';
+import { doGetProductsByArrival, doGetProductsBySell } from './actions';
+import { getByArrival, getBySell } from './reducer';
 import Slider from './slider';
 import Promotions from './promotions';
 import Cards from '../shared/cards';
