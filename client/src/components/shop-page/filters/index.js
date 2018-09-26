@@ -3,15 +3,17 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { doGetBrands, doGetWoods } from '../actions';
 import * as selectors from '../reducer';
+import * as productSelectors from '../products/reducer';
 import * as constants from './constants';
 import FilterList from '../../shared/filter-list';
 import FilterListRadio from '../../shared/filter-list-radio';
+import { doGetProducts } from '../products/actions';
 
 class Filters extends Component {
   state = {
-    brands: [],
+    brand: [],
     frets: [],
-    woods: [],
+    wood: [],
     price: []
   };
   componentDidMount() {
@@ -25,7 +27,9 @@ class Filters extends Component {
       return this.setState({ [category]: priceObj.array });
     }
 
-    this.setState({ [category]: data });
+    this.setState({ [category]: data }, () =>
+      this.props.doGetProducts(this.props.skip, this.props.limit, this.state)
+    );
   };
 
   render() {
@@ -34,9 +38,9 @@ class Filters extends Component {
         <FilterList
           open
           title="Brands"
-          list={this.props.brands}
-          checked={this.state.brands}
-          onFiltersChange={filters => this.handleFiltersChange(filters, 'brands')}
+          list={this.props.brand}
+          checked={this.state.brand}
+          onFiltersChange={filters => this.handleFiltersChange(filters, 'brand')}
         />
         <FilterList
           title="Frets"
@@ -46,9 +50,9 @@ class Filters extends Component {
         />
         <FilterList
           title="Woods"
-          list={this.props.woods}
-          checked={this.state.woods}
-          onFiltersChange={filters => this.handleFiltersChange(filters, 'woods')}
+          list={this.props.wood}
+          checked={this.state.wood}
+          onFiltersChange={filters => this.handleFiltersChange(filters, 'wood')}
         />
         <FilterListRadio
           title="Price"
@@ -61,12 +65,14 @@ class Filters extends Component {
 }
 
 const mapStateToProps = state => ({
-  brands: selectors.getBrands(state),
-  woods: selectors.getWoods(state)
+  brand: selectors.getBrand(state),
+  wood: selectors.getWood(state),
+  skip: productSelectors.getSkip(state),
+  limit: productSelectors.getLimit(state)
 });
 const withConnect = connect(
   mapStateToProps,
-  { doGetBrands, doGetWoods }
+  { doGetBrands, doGetWoods, doGetProducts }
 );
 
 export default withConnect(Filters);

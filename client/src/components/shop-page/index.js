@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import ShopHeader from './header';
 import Filters from './filters';
+import Products from './products';
 
 class ShopPage extends Component {
   render() {
@@ -13,7 +14,9 @@ class ShopPage extends Component {
             <div className="left">
               <Filters />
             </div>
-            <div className="right">22</div>
+            <div className="right">
+              <Products />
+            </div>
           </div>
         </div>
       </Fragment>
