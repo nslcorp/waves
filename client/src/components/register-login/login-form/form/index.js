@@ -5,7 +5,7 @@ import { validate } from './utils';
 import renderField from '../../../shared/render-form-field';
 
 const LoginForm = props => {
-  const { handleSubmit, pristine, submitting } = props;
+  const { handleSubmit, submitting } = props;
 
   return (
     <div className="signin_wrapper">

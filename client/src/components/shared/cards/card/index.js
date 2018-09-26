@@ -40,7 +40,7 @@ const Card = props => {
           <div className="button_wrapp">
             <Button
               type="bag_link"
-              runAction={() => {
+              onClick={() => {
                 props.user.isAuth ? console.log(props._id) : console.log('you need to log in');
               }}
             />

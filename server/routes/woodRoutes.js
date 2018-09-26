@@ -12,9 +12,9 @@ module.exports = app => {
     }
   });
 
-  app.get('/api/product/wood', async (req, res) => {
+  app.get('/api/product/woods', async (req, res) => {
     try {
-      const brands = await Wood.find({});
+      const brands = await Wood.find({}).select('-__v');
       return res.json(brands);
     } catch (error) {
       return res.status(400).json(error);

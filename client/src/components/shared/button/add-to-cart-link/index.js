@@ -12,10 +12,7 @@ const AddToCard = props => (
 );
 
 AddToCard.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
-  linkTo: PropTypes.string.isRequired,
-  addStyles: PropTypes.object
+  onClick: PropTypes.func.isRequired
 };
 
 export default AddToCard;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import * as types from './types';
 
+import api from '../../api';
 const USER_SERVER = '/api/users';
 
 export const doLoginUser = (values, history) => async dispatch => {
@@ -29,8 +30,8 @@ export const doRegisterUser = values => async dispatch => {
 export const doAuth = () => async dispatch => {
   dispatch({ type: types.AUTH_USER_REQUEST });
   try {
-    const user = await axios.get(USER_SERVER + '/auth');
-    dispatch({ type: types.AUTH_USER_SUCCESS, payload: user.data });
+    const user = await api.user.get('auth');
+    dispatch({ type: types.AUTH_USER_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: types.AUTH_USER_ERROR, payload: null });
   }
