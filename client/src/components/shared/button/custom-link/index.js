@@ -12,7 +12,7 @@ const CustomLink = props => {
 };
 
 CustomLink.propTypes = {
-  altClass: PropTypes.string.isRequired,
+  altClass: PropTypes.string,
   title: PropTypes.string.isRequired,
   linkTo: PropTypes.string.isRequired,
   addStyles: PropTypes.object

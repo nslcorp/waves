@@ -31,6 +31,7 @@ export const doAuth = () => async dispatch => {
   dispatch({ type: types.AUTH_USER_REQUEST });
   try {
     const user = await api.user.get('auth');
+
     dispatch({ type: types.AUTH_USER_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: types.AUTH_USER_ERROR, payload: null });

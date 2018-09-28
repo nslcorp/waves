@@ -2,7 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 
 import { validate } from './utils';
-import renderField from '../../../shared/render-form-field';
+import renderField from '../../../shared/form-field/input-field-group';
 
 const RegisterForm = props => {
   const { handleSubmit, submitting } = props;

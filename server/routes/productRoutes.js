@@ -81,6 +81,8 @@ module.exports = app => {
       }
     }
 
+    args['publish'] = true;
+
     try {
       const products = await Product.find(args)
         .populate('brand')

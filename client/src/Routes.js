@@ -8,6 +8,7 @@ import Dashboard from './components/dashboard';
 import ShopPage from './components/shop-page';
 
 import Auth from './components/hoc/auth';
+import AddProduct from './components/user/admin/add-product';
 
 const Routes = () => (
   <Layout>
@@ -15,6 +16,7 @@ const Routes = () => (
       <Route exact path="/" component={Home} />
       <Route exact path="/shop" component={ShopPage} />
       <Route exact path="/user/dashboard" component={Auth(Dashboard, true)} />
+      <Route exact path="/admin/add-product" component={AddProduct} />
 
       <Route exact path="/register-login" component={Auth(RegisterLogin, false)} />
       <Route exact path="/register" component={Auth(Register, false)} />
