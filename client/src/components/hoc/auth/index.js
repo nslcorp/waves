@@ -12,7 +12,7 @@ export default (TargetComponent, redirect, adminRoute = null) => {
     }
 
     componentWillReceiveProps(nextProps) {
-      const { isAuth } = nextProps.user;
+      const { isAuth, isAdmin } = nextProps.user;
 
       // if (!nextProps.user.isAuth) {
       //   if (redirect) {
@@ -31,11 +31,14 @@ export default (TargetComponent, redirect, adminRoute = null) => {
       //   }
       // }
 
-      if (isAuth && !redirect) {
-        console.log('to dashboard');
-        this.props.history.push('/user/dashboard');
-      } else if (!isAuth && redirect) {
+      if (!isAuth && redirect) {
         this.props.history.push('/register-login');
+      } else {
+        if (adminRoute && !isAdmin) {
+          this.props.history.push('/user/dashboard');
+        } else if (!redirect) {
+          this.props.history.push('/user/dashboard');
+        }
       }
     }
 

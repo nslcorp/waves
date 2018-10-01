@@ -11,7 +11,9 @@ axios.interceptors.response.use(null, error => {
 });
 
 const user = {
-  get: url => axios.get(`/api/users/${url}`).then(response => response.data)
+  get: url => axios.get(`/api/users/${url}`).then(response => response.data),
+  post: (url, data, config = {}) =>
+    axios.post(`/api/users/${url}`, data, config).then(response => response.data)
 };
 
 const products = {

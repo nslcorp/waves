@@ -1,6 +1,8 @@
+const formidable = require('express-formidable');
+const cloudinary = require('cloudinary');
 const User = require('../models/user');
-
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 
 module.exports = app => {
   app.get('/api/users/auth', auth, (req, res) => {
@@ -46,17 +48,42 @@ module.exports = app => {
     }
 
     const isMatch = await user.comparePassword(req.body.password);
-    if (!isMatch)
-      return res
-        .status(403)
-        .json({ loginSuccess: false, message: 'Wrong password' });
+    if (!isMatch) return res.status(403).json({ loginSuccess: false, message: 'Wrong password' });
 
     const token = user.token || (await user.generateToken());
     if (!token)
-      return res
-        .status(403)
-        .send({ loginSuccess: false, message: 'Generate token error' });
+      return res.status(403).send({ loginSuccess: false, message: 'Generate token error' });
 
     return res.cookie('w_auth', user.token).json({ loginSuccess: true });
   });
+
+  app.post('/api/users/uploadimage', /*auth, admin*/ formidable(), async (req, res) => {
+    try {
+      const data = await cloudinary.uploader.upload(req.files.file.path, {
+        public_id: Date.now(),
+        resource_type: 'auto'
+      });
+
+      res.json({
+        public_id: data.public_id,
+        url: data.url
+      });
+    } catch (error) {
+      res.status(400).json(error);
+    }
+  });
+
+  app.get(
+    '/api/users/removeimage',
+    /*auth,admin,*/ async (req, res) => {
+      let image_id = req.query.id;
+
+      try {
+        await cloudinary.uploader.destroy(req.query.id);
+        res.status(200).send('ok');
+      } catch (error) {
+        res.status(400).json({ succes: false, error });
+      }
+    }
+  );
 };

@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as types from './types';
 
 import api from '../../api';
+import { change } from 'redux-form';
 const USER_SERVER = '/api/users';
 
 export const doLoginUser = (values, history) => async dispatch => {
@@ -46,5 +47,30 @@ export const doLogout = history => async dispatch => {
     history.push('/register-login');
   } catch (error) {
     dispatch({ type: types.LOGOUT_USER_ERROR });
+  }
+};
+
+export const doUploadImage = (currFiles, files) => async dispatch => {
+  let formData = new FormData();
+  const config = { header: { 'content-type': 'multipart/form-data' } };
+  formData.append('file', currFiles[0]);
+
+  try {
+    const response = await api.user.post('uploadimage', formData, config);
+    const newFiles = [...files, response];
+    dispatch(change('add-product', 'image', newFiles));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const doRemoveImage = (id, files) => async dispatch => {
+  try {
+    await api.user.get(`removeimage?id=${id}`);
+    const newFiles = files.filter(file => file.public_id !== id);
+    console.log(newFiles);
+    dispatch(change('add-product', 'image', newFiles));
+  } catch (error) {
+    console.log(error);
   }
 };
