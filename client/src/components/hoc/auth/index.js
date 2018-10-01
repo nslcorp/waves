@@ -8,38 +8,31 @@ import * as selectors from '../../user/reducer';
 export default (TargetComponent, redirect, adminRoute = null) => {
   class AuthCheck extends Component {
     componentDidMount() {
-      !this.props.user.isAuth && this.props.doAuth();
+      if (!this.props.user.isAuth) {
+        console.log('this.props.user.isAuth');
+        this.props.doAuth();
+      }
     }
 
     componentWillReceiveProps(nextProps) {
-      const { isAuth } = nextProps.user;
+      console.log(this.props, nextProps);
+      const { isAuth, isAdmin } = nextProps.user;
 
-      // if (!nextProps.user.isAuth) {
-      //   if (redirect) {
-      //     this.props.history.push('/register-login');
-      //   }
-      // } else {
-      //   if (adminRoute && !nextProps.user.isAdmin) {
-      //     this.props.history.push('/user/dashboard');
-      //     console.log('to dashboard1');
-      //   } else {
-      //     console.log('redirect', redirect);
-      //     if (redirect === false) {
-      //       this.props.history.push('/user/dashboard');
-      //       console.log('to dashboard2');
-      //     }
-      //   }
-      // }
+      if (nextProps.loading) return null;
 
-      if (isAuth && !redirect) {
-        console.log('to dashboard');
-        this.props.history.push('/user/dashboard');
-      } else if (!isAuth && redirect) {
+      if (!isAuth && redirect) {
         this.props.history.push('/register-login');
+      } else {
+        if (adminRoute && !isAdmin) {
+          this.props.history.push('/user/dashboard');
+        } else if (redirect) {
+          this.props.history.push('/user/dashboard');
+        }
       }
     }
 
     render() {
+      console.log(this.props);
       if (this.props.loading) {
         return (
           <div className="main_loader">

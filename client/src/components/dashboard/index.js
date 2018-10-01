@@ -3,26 +3,30 @@ import PropTypes from 'prop-types';
 import UserLayout from './user-layout';
 import Button from '../shared/button';
 
-const Dashboard = ({ user }) => (
-  <UserLayout>
-    <div>
-      <div className="user_nfo_panel">
-        <h1>User information</h1>
-        <div>
-          <span>{user.name}</span>
-          <span>{user.lastName}</span>
-          <span>{user.email}</span>
-        </div>
-
-        <Button title="Edit account info" linkTo="/user/user-profile" />
+const Dashboard = props => {
+  const { user } = props;
+  console.log(props);
+  return (
+    <UserLayout>
+      <div>
         <div className="user_nfo_panel">
-          <h1>History purchases</h1>
-          <div>Info_will-be-here</div>
+          <h1>User information</h1>
+          <div>
+            <span>{user.name}</span>
+            <span>{user.lastName}</span>
+            <span>{user.email}</span>
+          </div>
+
+          <Button title="Edit account info" linkTo="/user/user-profile" />
+          <div className="user_nfo_panel">
+            <h1>History purchases</h1>
+            <div>Info_will-be-here</div>
+          </div>
         </div>
       </div>
-    </div>
-  </UserLayout>
-);
+    </UserLayout>
+  );
+};
 
 Dashboard.propTypes = {
   user: PropTypes.object.isRequired

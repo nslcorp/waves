@@ -3,6 +3,7 @@
 ## Ecomerce solution for selling Guitars
 
 ### Functionality
+Image and Video CDN: https://cloudinary.com/
 
 
 #BackEnd

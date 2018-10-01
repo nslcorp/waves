@@ -4,15 +4,21 @@ import { reduxForm, Field } from 'redux-form';
 import {
   InputFieldGroup,
   SelectFieldGroup,
-  TextAreaFieldGroup
+  TextAreaFieldGroup,
+  FileUploader
 } from '../../../../shared/form-field';
 import { options } from './constants';
+import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
+
+import Dropzone from 'react-dropzone';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const AddProductForm = props => {
   const { handleSubmit, submitting } = props;
 
   return (
     <form onSubmit={handleSubmit}>
+      <Field name="image" component={FileUploader} />
       <Field
         name="name"
         label="Name"

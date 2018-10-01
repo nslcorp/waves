@@ -15,6 +15,7 @@ const Routes = () => (
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/shop" component={ShopPage} />
+      <Route exact path="/product-detail/:id" component={Auth(RegisterLogin, null)} />
       <Route exact path="/user/dashboard" component={Auth(Dashboard, true)} />
       <Route exact path="/admin/add-product" component={AddProduct} />
 
