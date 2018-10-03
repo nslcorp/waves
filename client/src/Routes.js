@@ -22,6 +22,7 @@ const Routes = () => (
       <Route exact path="/admin/manage-categories" component={ManageCategories} />
 
       <Route exact path="/register-login" component={Auth(RegisterLogin, false)} />
+
       <Route exact path="/register" component={Auth(Register, false)} />
     </Switch>
   </Layout>
