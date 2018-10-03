@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../shared/button';
 import LoginForm from './login-form';
 
-const RegisterLogin = () => (
+const Login = () => (
   <div className="page_wrapper">
     <div className="container">
       <div className="register_login_container">
@@ -27,6 +27,6 @@ const RegisterLogin = () => (
   </div>
 );
 
-RegisterLogin.propTypes = {};
+Login.propTypes = {};
 
-export default RegisterLogin;
+export default Login;

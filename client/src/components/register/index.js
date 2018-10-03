@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 // import Dialog from '@material-ui/core/Dialog';
 import { connect } from 'react-redux';
 
-import RegisterForm from './form';
-import { doRegisterUser } from '../../user/actions';
+import RegisterForm from './form/index';
+import { doRegisterUser } from '../user/actions';
 
 class RegisterPage extends Component {
   render() {
@@ -12,7 +12,9 @@ class RegisterPage extends Component {
         <div className="container">
           <div className="register_login_container">
             <div className="left">
-              <RegisterForm onSubmit={this.props.doRegisterUser} />
+              <RegisterForm
+                onSubmit={values => this.props.doRegisterUser(values, this.props.history)}
+              />
             </div>
           </div>
         </div>

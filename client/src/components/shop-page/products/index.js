@@ -6,6 +6,7 @@ import { doGetProducts } from './actions';
 import LoadMore from './load-more';
 import Header from './header';
 import ProductList from './product-list';
+import { getFilters } from '../filters/reducer';
 
 class Products extends Component {
   componentDidMount() {
@@ -14,7 +15,8 @@ class Products extends Component {
 
   loadMoreCards = () => {
     //const skip = this.props.skip + this.props.limit;
-    this.props.doGetProducts(this.props.skip, this.props.limit);
+    const { skip, limit, filters, products } = this.props;
+    this.props.doGetProducts(skip, limit, filters, products);
   };
 
   render() {
@@ -38,7 +40,8 @@ const mapStateToProps = state => ({
   limit: selectors.getLimit(state),
   size: selectors.getSize(state),
   products: selectors.getProducts(state),
-  grid: selectors.getGrid(state)
+  grid: selectors.getGrid(state),
+  filters: getFilters(state)
 });
 export default connect(
   mapStateToProps,

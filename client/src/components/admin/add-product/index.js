@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getWood, getBrand } from '../../shop-page/filters/reducer';
 import { doGetWoods, doGetBrands } from '../../shop-page/filters/actions';
 
-import UserLayout from '../../dashboard/user-layout/index';
+import UserLayout from '../../dashboard/dashboard-layout/index';
 import AddProductForm from './form/index';
 
 class AddProduct extends Component {

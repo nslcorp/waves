@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import UserLayout from './user-layout';
+import DashboardLayout from './dashboard-layout';
 import Button from '../shared/button';
 
 const Dashboard = props => {
   const { user } = props;
   console.log(props);
   return (
-    <UserLayout>
+    <DashboardLayout>
       <div>
         <div className="user_nfo_panel">
           <h1>User information</h1>
@@ -24,7 +24,7 @@ const Dashboard = props => {
           </div>
         </div>
       </div>
-    </UserLayout>
+    </DashboardLayout>
   );
 };
 

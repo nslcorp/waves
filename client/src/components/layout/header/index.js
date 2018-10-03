@@ -29,9 +29,7 @@ const Header = props => {
           <div className="logo">Waves</div>
         </div>
         <div className="right">
-          <div className="top">
-            {isAuth ? showLinks() : <Link to="/register-login">Log In</Link>}
-          </div>
+          <div className="top">{isAuth ? showLinks() : <Link to="/login">Log In</Link>}</div>
           <div className="bottom">
             <Link to="/">Home</Link>
             <Link to="/shop">Guitars</Link>

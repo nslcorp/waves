@@ -11,18 +11,18 @@ export const doLoginUser = (values, history) => async dispatch => {
   try {
     const user = await axios.post(USER_SERVER + '/login', values);
     dispatch({ type: types.LOGIN_USER_SUCCESS, payload: user.data });
-    history.push('/user/dashboard');
+    history.push('/dashboard');
   } catch (error) {
     dispatch({ type: types.LOGIN_USER_ERROR, payload: error });
   }
 };
 
-export const doRegisterUser = values => async dispatch => {
+export const doRegisterUser = (values, history) => async dispatch => {
   dispatch({ type: types.REGISTER_USER_REQUEST });
-
   try {
     const user = await axios.post(USER_SERVER + '/register', values);
     dispatch({ type: types.REGISTER_USER_SUCCESS, payload: user.data });
+    history.push('/dashboard');
   } catch (error) {
     dispatch({ type: types.REGISTER_USER_ERROR, payload: error });
   }

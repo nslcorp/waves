@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import UserLayout from 'components/dashboard/user-layout';
+import UserLayout from 'components/dashboard/dashboard-layout';
 import Category from './category';
 import { getBrand, getWood } from 'components/shop-page/filters/reducer';
 import {

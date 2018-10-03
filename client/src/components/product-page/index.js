@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
-class Product extends Component {
+class ProductPage extends Component {
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    console.log(id);
+  }
   render() {
     return (
       <div>
-        <h3>Product</h3>
+        <h3>ProductPage</h3>
       </div>
     );
   }
 }
 
-Product.propTypes = {};
-
-export default Product;
+export default ProductPage;

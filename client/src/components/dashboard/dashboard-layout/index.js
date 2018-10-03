@@ -5,19 +5,19 @@ import { getUser } from '../../user/reducer';
 import SidebarLinks from './sidebar-links';
 
 const links = [
-  { name: 'My account', to: '/user/dashboard' },
-  { name: 'User information', to: '/user/user-profile' },
-  { name: 'My Cart', to: '/user/cart' }
+  { name: 'My account', to: '/dashboard/user/account' },
+  { name: 'User information', to: '/dashboard/user/profile' },
+  { name: 'My Cart', to: '/dashboard/user/cart' }
 ];
 
 const admin = [
-  { name: 'Site info', to: '/admin/site-info' },
-  { name: 'Add products', to: '/admin/add-product' },
-  { name: 'Manage categories', to: '/admin/manage-categories' },
-  { name: 'Upload file', to: '/admin/add-file' }
+  { name: 'Site info', to: '/dashboard/admin/site-info' },
+  { name: 'Add products', to: '/dashboard/admin/add-product' },
+  { name: 'Manage categories', to: '/dashboard/admin/manage-categories' },
+  { name: 'Upload file', to: '/dashboard/admin/add-file' }
 ];
 
-const UserLayout = props => {
+const DashboardLayout = props => {
   const { isAdmin, children } = props;
 
   return (
@@ -38,4 +38,4 @@ const mapStateToProps = state => ({
   isAdmin: getUser(state).isAdmin
 });
 
-export default connect(mapStateToProps)(UserLayout);
+export default connect(mapStateToProps)(DashboardLayout);

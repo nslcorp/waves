@@ -20,12 +20,12 @@ export default (TargetComponent, redirect, adminRoute = null) => {
       if (nextProps.loading) return null;
 
       if (!isAuth && redirect) {
-        this.props.history.push('/register-login');
+        this.props.history.push('/register');
       } else {
         if (adminRoute && !isAdmin) {
-          this.props.history.push('/user/dashboard');
+          this.props.history.push('dashboard');
         } else if (redirect) {
-          this.props.history.push('/user/dashboard');
+          this.props.history.push('dashboard');
         }
       }
     }
