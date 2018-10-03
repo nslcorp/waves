@@ -7,7 +7,7 @@ const admin = require('../middleware/admin');
 module.exports = app => {
   app.get('/api/users/auth', auth, (req, res) => {
     const data = {
-      isAdmin: req.user.role === 0,
+      isAdmin: req.user.role !== 0,
       isAuth: true,
       email: req.user.email,
       name: req.user.name,

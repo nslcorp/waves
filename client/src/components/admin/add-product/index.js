@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getWood, getBrand } from '../../../shop-page/filters/reducer';
-import { doGetWoods, doGetBrands } from '../../../shop-page/filters/actions';
+import { getWood, getBrand } from '../../shop-page/filters/reducer';
+import { doGetWoods, doGetBrands } from '../../shop-page/filters/actions';
 
-import UserLayout from '../../../dashboard/user-layout';
-import AddProductForm from './form';
+import UserLayout from '../../dashboard/user-layout/index';
+import AddProductForm from './form/index';
 
 class AddProduct extends Component {
   componentDidMount() {

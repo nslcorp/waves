@@ -6,7 +6,7 @@ import {
   SelectFieldGroup,
   TextAreaFieldGroup,
   FileUploader
-} from '../../../../shared/form-field';
+} from '../../../shared/form-field/index';
 import { options } from './constants';
 import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
 

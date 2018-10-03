@@ -19,6 +19,18 @@ export default (state = initialState, action) => {
     case types.GET_WOODS:
       return { ...state, wood: payload };
 
+    case types.ADD_BRANDS:
+      return {
+        ...state,
+        brand: [...state.brand, payload]
+      };
+
+    case types.ADD_WOODS:
+      return {
+        ...state,
+        wood: [...state.wood, payload]
+      };
+
     case types.TOGGLE_CHECKBOX:
     case types.TOGGLE_RADIO:
       return {

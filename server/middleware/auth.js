@@ -8,10 +8,7 @@ const auth = async (req, res, next) => {
     const id = await jwt.verify(token, process.env.SECRET);
     const user = await User.findOne({ _id: id, token });
 
-    if (!user)
-      return res
-        .status(400)
-        .json({ isAuth: false, message: 'User was not found' });
+    if (!user) return res.status(400).json({ isAuth: false, message: 'User was not found' });
 
     req.token = user.token;
     req.user = user;

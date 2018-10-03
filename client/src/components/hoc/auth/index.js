@@ -15,7 +15,6 @@ export default (TargetComponent, redirect, adminRoute = null) => {
     }
 
     componentWillReceiveProps(nextProps) {
-      console.log(this.props, nextProps);
       const { isAuth, isAdmin } = nextProps.user;
 
       if (nextProps.loading) return null;
@@ -32,7 +31,6 @@ export default (TargetComponent, redirect, adminRoute = null) => {
     }
 
     render() {
-      console.log(this.props);
       if (this.props.loading) {
         return (
           <div className="main_loader">

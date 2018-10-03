@@ -42,9 +42,8 @@ export const doAuth = () => async dispatch => {
 export const doLogout = history => async dispatch => {
   try {
     const user = await axios.get(USER_SERVER + '/logout');
-    console.log('doLogout', user);
     dispatch({ type: types.LOGOUT_USER_SUCCESS });
-    history.push('/register-login');
+    history.push('/register-errorin');
   } catch (error) {
     dispatch({ type: types.LOGOUT_USER_ERROR });
   }
@@ -60,7 +59,7 @@ export const doUploadImage = (currFiles, files) => async dispatch => {
     const newFiles = [...files, response];
     dispatch(change('add-product', 'image', newFiles));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -68,9 +67,8 @@ export const doRemoveImage = (id, files) => async dispatch => {
   try {
     await api.user.get(`removeimage?id=${id}`);
     const newFiles = files.filter(file => file.public_id !== id);
-    console.log(newFiles);
     dispatch(change('add-product', 'image', newFiles));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
