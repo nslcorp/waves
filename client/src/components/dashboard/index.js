@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DashboardLayout from './dashboard-layout';
-import Button from '../shared/button';
+import Button from 'shared/button';
 
 const Dashboard = props => {
   const { user } = props;

@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../../shared/button';
+import Button from 'shared/button';
 
 const PROMOTION = {
   img: '/images/featured/featured_home_3.jpg',
   lineOne: 'Up to 40% off',
   lineTwo: 'In second hand guitars',
   linkTitle: 'Shop now',
-  linkTo: '/shop'
+  linkTo: '/guitars'
 };
 
 const Promotions = () => (

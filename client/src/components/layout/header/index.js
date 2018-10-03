@@ -32,7 +32,7 @@ const Header = props => {
           <div className="top">{isAuth ? showLinks() : <Link to="/login">Log In</Link>}</div>
           <div className="bottom">
             <Link to="/">Home</Link>
-            <Link to="/shop">Guitars</Link>
+            <Link to="/guitars">Guitars</Link>
           </div>
         </div>
       </div>

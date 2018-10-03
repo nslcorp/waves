@@ -13,6 +13,17 @@ Image and Video CDN: https://cloudinary.com/
 
 * auth with email/password. 
 
-
-
 >Note:  example this feature is available ....<br>
+Use the backtick to refer to a `function()`.
+ 
+There is a literal ``backtick (`)`` here.
+
+
+
+### Services
+www.cloudinary.com -- storing images/video remotely
+www.mlab.com -- cloud MongoDB
+
+
+
+

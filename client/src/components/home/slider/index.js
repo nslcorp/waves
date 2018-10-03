@@ -8,14 +8,14 @@ const slides = [
     title: 'Fender',
     lowTitle: 'Custom shop',
     linkTitle: 'Shop now',
-    to: '/shop'
+    to: '/guitars'
   },
   {
     img: '/images/featured/featured_home_2.jpg',
     title: 'B-Stock',
     lowTitle: 'Awesome discounts',
     linkTitle: 'View offers',
-    to: '/shop'
+    to: '/guitars'
   }
 ];
 
