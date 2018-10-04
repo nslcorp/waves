@@ -17,22 +17,23 @@ module.exports = app => {
 
   //api/product/articles_by_id?id=fsdf,fsdf,ewcv&type=single|array
   app.get('/api/product/articles_by_id', async (req, res) => {
-    const type = req.query.type || 'single';
-    let items = req.query.id;
+    // const type = req.query.type || 'single';
+    // let items = req.query.id;
 
-    if (type === 'array') {
-      items = req.query.id.split(',').map(id => {
-        return mongoose.Types.ObjectId(id);
-      });
-      console.log(items);
-    }
+    // if (type === 'array') {
+    //   items = req.query.id.split(',').map(id => {
+    //     return mongoose.Types.ObjectId(id);
+    //   });
+    //   console.log(items);
+    // }
 
     try {
-      const products = await Product.find({ _id: { $in: items } })
+      // const products = await Product.find({ _id: { $in: items } })
+      const product = await Product.findOne({ _id: req.query.id })
         .populate('brand')
         .populate('wood')
         .exec();
-      res.json(products);
+      res.json(product);
     } catch (error) {
       res.status(400).json(error);
     }

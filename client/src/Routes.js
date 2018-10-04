@@ -20,10 +20,14 @@ const Routes = () => (
       <Route exact path="/guitars/:id" component={Auth(GuitarDetail, null)} />
 
       <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
-      <Route exact path="/admin/add-product" component={Auth(AddProduct, true)} />
-      <Route exact path="/admin/manage-categories" component={Auth(ManageCategories, true)} />
+      <Route exact path="/dashboard/admin/add-product" component={Auth(AddProduct, true)} />
+      <Route
+        exact
+        path="/dashboard/admin/manage-categories"
+        component={Auth(ManageCategories, true)}
+      />
 
-      <Route exact path="/login" component={Auth(Login, true)} />
+      <Route exact path="/login" component={Auth(Login, false)} />
       <Route exact path="/register" component={Auth(Register, false)} />
     </Switch>
   </Layout>

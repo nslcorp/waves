@@ -9,7 +9,6 @@ export default (TargetComponent, redirect, adminRoute = null) => {
   class AuthCheck extends Component {
     componentDidMount() {
       if (!this.props.user.isAuth) {
-        console.log('this.props.user.isAuth');
         this.props.doAuth();
       }
     }
@@ -20,12 +19,12 @@ export default (TargetComponent, redirect, adminRoute = null) => {
       if (nextProps.loading) return null;
 
       if (!isAuth && redirect) {
-        this.props.history.push('/register');
+        this.props.history.replace('/login');
       } else {
         if (adminRoute && !isAdmin) {
-          this.props.history.push('dashboard');
+          this.props.history.replace('/dashboard');
         } else if (redirect) {
-          this.props.history.push('dashboard');
+          this.props.history.replace('/dashboard');
         }
       }
     }

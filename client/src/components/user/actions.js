@@ -57,7 +57,7 @@ export const doUploadImage = (currFiles, files) => async dispatch => {
   try {
     const response = await api.user.post('uploadimage', formData, config);
     const newFiles = [...files, response];
-    dispatch(change('add-product', 'image', newFiles));
+    dispatch(change('add-product', 'images', newFiles));
   } catch (error) {
     console.error(error);
   }

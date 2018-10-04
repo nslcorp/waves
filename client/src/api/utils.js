@@ -1,8 +1,6 @@
 import axios from 'axios/index';
 
-axios.defaults.baseURL = process.env.API_URL;
-
-console.log(process.env.API_URL);
+// axios.defaults.baseURL = process.env.API_URL;
 
 axios.interceptors.response.use(null, error => {
   const expectedError =

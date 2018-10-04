@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CustomLink from './custom-link/index';
-import BagLink from './bag-link/index';
-import AddToCard from './add-to-cart-link/index';
+import CustomLink from './custom-link';
+import BagLink from './bag-link';
+import AddToCard from './add-to-cart-link';
 
 const Button = ({ type, ...restProps }) => {
   if (type === 'bag_link') return <BagLink {...restProps} />;
 
-  if (type === 'add_to_cart_link') return <AddToCard {...restProps} />;
+  if (type === 'add-to-cart') return <AddToCard {...restProps} />;
 
   return <CustomLink {...restProps} />;
 };

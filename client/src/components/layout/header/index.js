@@ -15,7 +15,7 @@ const Header = props => {
         <Link to="/user/cart">My Cart</Link>
       </div>
 
-      <Link to="/user/dashboard">My Account</Link>
+      <Link to="/dashboard">My Account</Link>
       <div className="log_out_link" onClick={() => props.doLogout(props.history)}>
         Log Out
       </div>

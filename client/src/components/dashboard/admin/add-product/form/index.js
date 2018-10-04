@@ -8,17 +8,13 @@ import {
   FileUploader
 } from 'shared/form-field/index';
 import { options } from './constants';
-import faPlusCircle from '@fortawesome/fontawesome-free-solid/faPlusCircle';
-
-import Dropzone from 'react-dropzone';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 const AddProductForm = props => {
   const { handleSubmit, submitting } = props;
 
   return (
     <form onSubmit={handleSubmit}>
-      <Field name="image" component={FileUploader} />
+      <Field name="images" component={FileUploader} />
       <Field
         name="name"
         label="Name"
@@ -41,7 +37,7 @@ const AddProductForm = props => {
       />
       <div className="form_devider" />
 
-      <Field name="brand" label="Brand" component={SelectFieldGroup} options={[]} />
+      <Field name="brand" label="Brand" component={SelectFieldGroup} options={props.brand} />
       <Field
         name="shipping"
         label="Shipping"
@@ -57,10 +53,15 @@ const AddProductForm = props => {
       <div className="form_devider" />
 
       <Field name="wood" label="Wood material" component={SelectFieldGroup} options={props.wood} />
-      <Field name="frets" label="Frets" component={SelectFieldGroup} options={props.brand} />
+      <Field name="frets" label="Frets" component={SelectFieldGroup} options={options.frets} />
       <div className="form_devider" />
 
-      <Field name="frets" label="Publish" component={SelectFieldGroup} options={options.publish} />
+      <Field
+        name="publish"
+        label="Publish"
+        component={SelectFieldGroup}
+        options={options.publish}
+      />
 
       <div>
         <button type="submit" disabled={submitting}>

@@ -6,6 +6,7 @@ import { doGetWoods, doGetBrands } from '../../../guitars/filters/actions';
 
 import UserLayout from '../../dashboard-layout/index';
 import AddProductForm from './form/index';
+import { doAddProduct } from '../../../guitar-detail/actions';
 
 class AddProduct extends Component {
   componentDidMount() {
@@ -20,7 +21,7 @@ class AddProduct extends Component {
       <UserLayout>
         <div>
           <h3>AddProduct</h3>
-          <AddProductForm onSubmit={values => console.log(values)} wood={wood} brand={brand} />
+          <AddProductForm onSubmit={this.props.doAddProduct} wood={wood} brand={brand} />
         </div>
       </UserLayout>
     );
@@ -35,5 +36,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { doGetBrands, doGetWoods }
+  { doGetBrands, doGetWoods, doAddProduct }
 )(AddProduct);
