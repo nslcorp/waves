@@ -1,34 +1,35 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import Layout from './components/layout';
 import Home from './components/home';
 import Login from './components/auth/login';
 import Register from './components/auth/register';
 import Dashboard from './components/dashboard';
 import Guitars from './components/guitars';
-
-import Auth from './hoc/auth';
-import AddProduct from './components/dashboard/admin/add-product';
+import AddProduct from 'components/dashboard/admin/add-product';
 import ManageCategories from 'components/dashboard/admin/manage-categories';
-import GuitarDetail from './components/guitar-detail/index';
+import GuitarDetail from 'components/guitar-detail/index';
+import AuthRoute from 'shared/auth-route';
+import ProtectedRoute from 'shared/potected-route';
 
 const Routes = () => (
   <Layout>
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/guitars" component={Guitars} />
-      <Route exact path="/guitars/:id" component={Auth(GuitarDetail, null)} />
+      <Route exact path="/guitars/:id" component={GuitarDetail} />
 
-      <Route exact path="/dashboard" component={Auth(Dashboard, true)} />
-      <Route exact path="/dashboard/admin/add-product" component={Auth(AddProduct, true)} />
-      <Route
+      <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+      <ProtectedRoute exact path="/dashboard/admin/add-product" component={AddProduct} />
+      <ProtectedRoute
         exact
         path="/dashboard/admin/manage-categories"
-        component={Auth(ManageCategories, true)}
+        component={ManageCategories}
       />
 
-      <Route exact path="/login" component={Auth(Login, false)} />
-      <Route exact path="/register" component={Auth(Register, false)} />
+      <AuthRoute exact path="/login" component={Login} />
+      <AuthRoute exact path="/register" component={Register} />
     </Switch>
   </Layout>
 );

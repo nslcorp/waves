@@ -1,15 +1,13 @@
-import axios from 'axios';
 import * as types from './types';
 
-import api from '../../api';
+import api from 'api';
 import { change } from 'redux-form';
-const USER_SERVER = '/api/users';
 
 export const doLoginUser = (values, history) => async dispatch => {
   dispatch({ type: types.LOGIN_USER_REQUEST });
 
   try {
-    const user = await axios.post(USER_SERVER + '/login', values);
+    const user = await api.user.post('login', values);
     dispatch({ type: types.LOGIN_USER_SUCCESS, payload: user.data });
     history.push('/dashboard');
   } catch (error) {
@@ -20,9 +18,9 @@ export const doLoginUser = (values, history) => async dispatch => {
 export const doRegisterUser = (values, history) => async dispatch => {
   dispatch({ type: types.REGISTER_USER_REQUEST });
   try {
-    const user = await axios.post(USER_SERVER + '/register', values);
+    const user = await api.user.post('register', values);
     dispatch({ type: types.REGISTER_USER_SUCCESS, payload: user.data });
-    history.push('/dashboard');
+    history.redirect('/dashboard');
   } catch (error) {
     dispatch({ type: types.REGISTER_USER_ERROR, payload: error });
   }
@@ -33,7 +31,7 @@ export const doAuth = () => async dispatch => {
   try {
     const user = await api.user.get('auth');
 
-    dispatch({ type: types.AUTH_USER_SUCCESS, payload: user });
+    await dispatch({ type: types.AUTH_USER_SUCCESS, payload: user });
   } catch (error) {
     dispatch({ type: types.AUTH_USER_ERROR, payload: null });
   }
@@ -41,7 +39,7 @@ export const doAuth = () => async dispatch => {
 
 export const doLogout = history => async dispatch => {
   try {
-    const user = await axios.get(USER_SERVER + '/logout');
+    const user = await api.user.get('logout');
     dispatch({ type: types.LOGOUT_USER_SUCCESS });
     history.push('/register-errorin');
   } catch (error) {
