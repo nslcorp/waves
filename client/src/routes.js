@@ -12,6 +12,7 @@ import ManageCategories from 'components/dashboard/admin/manage-categories';
 import GuitarDetail from 'components/guitar-detail/index';
 import AuthRoute from 'shared/auth-route';
 import ProtectedRoute from 'shared/potected-route';
+import Cart from 'components/dashboard/cart';
 
 const Routes = () => (
   <Layout>
@@ -21,6 +22,7 @@ const Routes = () => (
       <Route exact path="/guitars/:id" component={GuitarDetail} />
 
       <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+      <ProtectedRoute exact path="/dashboard/cart" component={Cart} />
       <ProtectedRoute exact path="/dashboard/admin/add-product" component={AddProduct} />
       <ProtectedRoute
         exact

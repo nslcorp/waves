@@ -8,19 +8,22 @@ import { doLogout } from '../../user/actions';
 const Header = props => {
   const { isAuth, cart } = props;
 
-  const showLinks = () => (
-    <Fragment>
-      <div className="cart_link">
-        <span>{cart ? cart.length : 0}</span>
-        <Link to="/user/cart">My Cart</Link>
-      </div>
+  const showLinks = () => {
+    console.log(cart);
+    return (
+      <Fragment>
+        <div className="cart_link">
+          <span>{cart ? cart.length : 0}</span>
+          <Link to="/dashboard/cart">My Cart</Link>
+        </div>
 
-      <Link to="/dashboard">My Account</Link>
-      <div className="log_out_link" onClick={() => props.doLogout(props.history)}>
-        Log Out
-      </div>
-    </Fragment>
-  );
+        <Link to="/dashboard">My Account</Link>
+        <div className="log_out_link" onClick={() => props.doLogout(props.history)}>
+          Log Out
+        </div>
+      </Fragment>
+    );
+  };
 
   return (
     <header className="bck_b_light">

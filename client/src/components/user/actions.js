@@ -39,9 +39,9 @@ export const doAuth = () => async dispatch => {
 
 export const doLogout = history => async dispatch => {
   try {
-    const user = await api.user.get('logout');
+    await api.user.get('logout');
     dispatch({ type: types.LOGOUT_USER_SUCCESS });
-    history.push('/register-errorin');
+    history.push('/register-error');
   } catch (error) {
     dispatch({ type: types.LOGOUT_USER_ERROR });
   }
@@ -66,6 +66,15 @@ export const doRemoveImage = (id, files) => async dispatch => {
     await api.user.get(`removeimage?id=${id}`);
     const newFiles = files.filter(file => file.public_id !== id);
     dispatch(change('add-product', 'image', newFiles));
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const doAddToCart = id => async dispatch => {
+  try {
+    const cart = await api.user.post(`add-to-cart`, { id });
+    dispatch({ type: types.ADD_TO_CART_SUCCESS, payload: cart });
   } catch (error) {
     console.error(error);
   }

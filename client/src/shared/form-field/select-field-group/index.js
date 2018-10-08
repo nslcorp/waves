@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
 const SelectFieldGroup = props => {
@@ -29,10 +28,10 @@ const SelectFieldGroup = props => {
 };
 
 SelectFieldGroup.propTypes = {
-  input: PropTypes.shape().isRequired,
   info: PropTypes.string,
-  options: PropTypes.array.isRequired,
-  meta: PropTypes.shape().isRequired
+  input: PropTypes.shape().isRequired,
+  meta: PropTypes.shape().isRequired,
+  options: PropTypes.array.isRequired
 };
 
 export default SelectFieldGroup;

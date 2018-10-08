@@ -5,6 +5,7 @@ import { doGetProduct } from './actions';
 import GuitarHeader from './header';
 import GuitarInfo from './info';
 import ImageSection from './image-section';
+import { doAddToCart } from 'components/user/actions';
 
 class GuitarDetail extends Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ class GuitarDetail extends Component {
     !this.props.loading && this.props.doGetProduct(id);
   }
 
-  handleAddToCart = id => console.log(id);
+  handleAddToCart = id => this.props.doAddToCart(id);
 
   render() {
     if (!this.props.product._id) return null;
@@ -33,7 +34,7 @@ class GuitarDetail extends Component {
               </div>
             </div>
             <div className="right">
-              <GuitarInfo onAddToCart={this.handleAddToCart} {...this.props.product} />
+              <GuitarInfo onAddToCart={this.props.doAddToCart} {...this.props.product} />
             </div>
           </div>
         </div>
@@ -48,5 +49,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { doGetProduct }
+  { doGetProduct, doAddToCart }
 )(GuitarDetail);

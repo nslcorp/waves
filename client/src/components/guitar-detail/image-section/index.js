@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import ImageLightBox from './image-light-box';
 import Thumb from './thumb';
 
@@ -72,7 +71,5 @@ class ImageSection extends Component {
     );
   }
 }
-
-ImageSection.propTypes = {};
 
 export default ImageSection;

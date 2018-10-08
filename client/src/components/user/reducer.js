@@ -19,6 +19,15 @@ export default (state = initialState, action) => {
     case types.LOGOUT_USER_SUCCESS:
       return { ...state, entities: {} };
 
+    case types.ADD_TO_CART_SUCCESS:
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          cart: payload
+        }
+      };
+
     default:
       return state;
   }

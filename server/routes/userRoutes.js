@@ -3,6 +3,7 @@ const cloudinary = require('cloudinary');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
+const mongoose = require('mongoose');
 
 module.exports = app => {
   app.get('/api/users/auth', auth, (req, res) => {
@@ -86,4 +87,40 @@ module.exports = app => {
       }
     }
   );
+
+  app.post('/api/users/add-to-cart', auth, async (req, res) => {
+    const user = await User.findOne({ _id: req.user._id });
+
+    if (!user) {
+      return res.status(403).json({
+        loginSuccess: false,
+        message: 'User was not found'
+      });
+    }
+
+    //const duplicate = user.cart.some(item => item.id === req.query.id);
+
+    const userUpdated = await User.findOneAndUpdate(
+      { _id: req.user._id },
+      {
+        $push: {
+          cart: {
+            id: mongoose.Types.ObjectId(req.body.id),
+            quantity: 1,
+            date: Date.now()
+          }
+        }
+      },
+      { new: true }
+    );
+
+    if (!userUpdated) {
+      return res.status(403).json({
+        loginSuccess: false,
+        message: 'Error in add data into user cart'
+      });
+    }
+
+    res.json(userUpdated.cart);
+  });
 };

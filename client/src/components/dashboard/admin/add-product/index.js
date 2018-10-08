@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getWood, getBrand } from '../../../guitars/filters/reducer';
 import { doGetWoods, doGetBrands } from '../../../guitars/filters/actions';
 
-import UserLayout from '../../dashboard-layout/index';
+import DashboardLayout from '../../dashboard-layout';
 import AddProductForm from './form/index';
 import { doAddProduct } from '../../../guitar-detail/actions';
 
@@ -18,12 +17,12 @@ class AddProduct extends Component {
   render() {
     const { wood, brand } = this.props;
     return (
-      <UserLayout>
+      <DashboardLayout>
         <div>
           <h3>AddProduct</h3>
           <AddProductForm onSubmit={this.props.doAddProduct} wood={wood} brand={brand} />
         </div>
-      </UserLayout>
+      </DashboardLayout>
     );
   }
 }
