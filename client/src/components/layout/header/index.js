@@ -9,7 +9,6 @@ const Header = props => {
   const { isAuth, cart } = props;
 
   const showLinks = () => {
-    console.log(cart);
     return (
       <Fragment>
         <div className="cart_link">

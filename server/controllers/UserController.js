@@ -1,8 +1,9 @@
-const BaseController = require('./BaseController');
 const cloudinary = require('cloudinary');
+const formidable = require('express-formidable');
+
+const BaseController = require('./BaseController');
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
-
 const User = require('../models/user');
 
 class UserController extends BaseController {
@@ -25,7 +26,8 @@ class UserController extends BaseController {
     this.addToCart = [auth, this._findUserByEmail, this._addToCart];
   }
 
-  _getUserData = (req, res, next) => {
+  async _getUserData(req, res, next) {
+    console.log('_getUserData...');
     req.responseData = {
       isAdmin: req.user.role !== 0,
       isAuth: true,
@@ -37,83 +39,74 @@ class UserController extends BaseController {
     };
 
     next();
-  };
+  }
 
-  _logout = async (req, res, next) => {
+  async _logout(req, res, next) {
+    console.log('_logout...');
     try {
       await User.findOneAndUpdate({ _id: req.user._id }, { token: '' });
       res.responseData = { success: true };
+
+      next();
     } catch (error) {
-      next(error);
+      return res.status(400).json({ success: false, error });
     }
+  }
 
-    const user = await User.findOneAndUpdate({ _id: req.user._id }, { token: '' });
-
-    if (!user) {
-      // const error = 'Logout error. User was not found';
-      const error = new Error('Logout error. User was not found');
-
-      res.responseStatus = 400;
-      next(error);
-    }
-
-    res.responseData = { success: true };
-    next(error);
-  };
-
-  _register = async (req, res, next) => {
+  async _register(req, res, next) {
     try {
       const user = await new User(req.body).save();
 
       req.responseData = user;
       next();
     } catch (error) {
-      return res.json({ success: false, error });
+      return res.status(400).json({ success: false, error });
     }
-  };
+  }
 
-  _findUserByEmail = async (req, res, next) => {
+  async _findUserByEmail(req, res, next) {
     let user = await User.findOne({ email: req.body.email });
 
     if (!user) {
-      return res.status(403).json({
-        loginSuccess: false,
-        message: 'Auth failed, email was not find'
+      return res.status(400).json({
+        success: false,
+        message: 'User was not found by email'
       });
     }
 
     res.user = user;
     next();
-  };
+  }
 
-  _matchPassword = async (req, res) => {
+  async _matchPassword(req, res, next) {
     const isMatch = await req.user.comparePassword(req.body.password);
 
     if (!isMatch) {
-      return res.status(403).json({ loginSuccess: false, message: 'Wrong password' });
+      return res.status(400).json({ success: false, message: 'Wrong password' });
     }
 
     next();
-  };
+  }
 
-  _generateToken = async (req, res, next) => {
+  async _generateToken(req, res, next) {
     user.token = user.token || (await user.generateToken());
+
     if (!user.token) {
-      return res.status(403).send({ loginSuccess: false, message: 'Generate token error' });
+      return res.status(400).send({ success: false, message: 'Generate token error' });
     }
 
     next();
-  };
+  }
 
-  _setCookie = (req, res, next) => {
+  _setCookie(req, res, next) {
     res.cookie('w_auth', user.token);
 
     res.responseData = { success: true };
 
     next();
-  };
+  }
 
-  _uploadToCloudinary = async (req, res, next) => {
+  async _uploadToCloudinary(req, res, next) {
     try {
       const data = await cloudinary.uploader.upload(req.files.file.path, {
         public_id: Date.now(),
@@ -124,12 +117,14 @@ class UserController extends BaseController {
         public_id: data.public_id,
         url: data.url
       };
-    } catch (error) {
-      res.status(400).json(error);
-    }
-  };
 
-  _addToCart = async (req, res, next) => {
+      next();
+    } catch (error) {
+      return res.status(406).json(error);
+    }
+  }
+
+  async _addToCart(req, res, next) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: req.user._id },
       {
@@ -153,5 +148,7 @@ class UserController extends BaseController {
 
     req.responseData = updatedUser.cart;
     next();
-  };
+  }
 }
+
+module.exports = UserController;

@@ -13,13 +13,13 @@ import GuitarDetail from './components/guitar-detail/index';
 import AuthRoute from './shared/auth-route';
 import ProtectedRoute from './shared/potected-route';
 import Cart from './components/dashboard/cart';
+import PageNotFound from './components/page-not-found';
 
 console.log(process.env.NODE_PATH);
 
 const Routes = () => (
   <Layout>
     <Switch>
-      <Route exact path="/" component={Home} />
       <Route exact path="/guitars" component={Guitars} />
       <Route exact path="/guitars/:id" component={GuitarDetail} />
 
@@ -34,6 +34,10 @@ const Routes = () => (
 
       <AuthRoute exact path="/login" component={Login} />
       <AuthRoute exact path="/register" component={Register} />
+
+      <Route exact path="/" component={Home} />
+
+      <Route component={PageNotFound} />
     </Switch>
   </Layout>
 );
