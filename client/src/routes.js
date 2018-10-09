@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Layout from './components/layout';
-import Home from './components/home';
+import Layout from 'components/layout';
+import Home from 'components/home';
 import Login from './components/auth/login';
 import Register from './components/auth/register';
 import Dashboard from './components/dashboard';
@@ -13,6 +13,8 @@ import GuitarDetail from './components/guitar-detail/index';
 import AuthRoute from './shared/auth-route';
 import ProtectedRoute from './shared/potected-route';
 import Cart from './components/dashboard/cart';
+
+console.log(process.env.NODE_PATH);
 
 const Routes = () => (
   <Layout>
