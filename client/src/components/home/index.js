@@ -5,7 +5,7 @@ import { doGetProductsByArrival, doGetProductsBySell } from './actions';
 import { getByArrival, getBySell } from './reducer';
 import Slider from './slider';
 import Promotions from './promotions';
-import Cards from './shared/cards';
+import Cards from '../../shared/cards';
 
 class Home extends Component {
   componentDidMount() {

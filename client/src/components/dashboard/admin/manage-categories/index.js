@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import UserLayout from './components/dashboard/dashboard-layout/index';
+import DashboardLayout from '../../dashboard-layout';
 import Category from './category/index';
-import { getBrand, getWood } from './components/guitars/filters/reducer';
-import {
-  doGetBrands,
-  doGetWoods,
-  doAddBrand,
-  doAddWood
-} from './components/guitars/filters/actions';
+import { getBrand, getWood } from '../../../guitars/filters/reducer';
+import { doGetBrands, doGetWoods, doAddBrand, doAddWood } from '../../../guitars/filters/actions';
 
 class ManageCategories extends Component {
   componentDidMount() {
@@ -21,10 +16,10 @@ class ManageCategories extends Component {
   render() {
     const { brands, woods } = this.props;
     return (
-      <UserLayout>
+      <DashboardLayout>
         <Category title="Brands" list={brands} name="brand" onAddCategory={this.props.doAddBrand} />
         <Category title="Woods" list={woods} name="wood" onAddCategory={this.props.doAddWood} />
-      </UserLayout>
+      </DashboardLayout>
     );
   }
 }

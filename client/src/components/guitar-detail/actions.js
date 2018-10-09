@@ -1,5 +1,5 @@
 import * as types from './types';
-import api from 'api';
+import api from '../../api';
 
 export const doGetProduct = id => async dispatch => {
   dispatch({ type: types.GET_PRODUCT_REQUEST });

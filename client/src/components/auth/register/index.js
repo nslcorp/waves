@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import Dialog from '@material-ui/core/Dialog';
 import { connect } from 'react-redux';
 
 import RegisterForm from './form/index';

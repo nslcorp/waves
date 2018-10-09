@@ -5,15 +5,13 @@ import { doGetProduct } from './actions';
 import GuitarHeader from './header';
 import GuitarInfo from './info';
 import ImageSection from './image-section';
-import { doAddToCart } from './components/user/actions';
+import { doAddToCart } from '../user/actions';
 
 class GuitarDetail extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     !this.props.loading && this.props.doGetProduct(id);
   }
-
-  handleAddToCart = id => this.props.doAddToCart(id);
 
   render() {
     if (!this.props.product._id) return null;

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Card from './component';
-import { getUser } from './components/user/reducer';
-import { doAddToCart } from './components/user/actions';
+import { getUser } from '../../../components/user/reducer';
+import { doAddToCart } from '../../../components/user/actions';
 
 const mapStateToProps = state => ({
   isAuth: getUser(state).isAuth

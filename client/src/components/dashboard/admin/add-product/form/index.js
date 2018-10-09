@@ -6,7 +6,7 @@ import {
   SelectFieldGroup,
   TextAreaFieldGroup,
   FileUploader
-} from './shared/form-field';
+} from '../../../../../shared/form-field';
 import { options } from './constants';
 
 const AddProductForm = props => {

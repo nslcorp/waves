@@ -5,7 +5,7 @@ import faPhone from '@fortawesome/fontawesome-free-solid/faPhone';
 import faClock from '@fortawesome/fontawesome-free-solid/faClock';
 import faEnvelope from '@fortawesome/fontawesome-free-solid/faEnvelope';
 
-const Footer = props => (
+const Footer = () => (
   <footer className="bck_b_dark">
     <div className="container">
       <div className="logo">Logo</div>
@@ -52,17 +52,12 @@ const Footer = props => (
         <div className="left">
           <h2>Be the first who know</h2>
           <div>
-            <div>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure,
-              odio?
-            </div>
+            <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, odio?</div>
           </div>
         </div>
       </div>
     </div>
   </footer>
 );
-
-Footer.propTypes = {};
 
 export default Footer;

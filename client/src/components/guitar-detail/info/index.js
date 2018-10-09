@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from './shared/button';
+import Button from '../../../shared/button';
 
 import Shipping from './shipping';
 import Available from './available';
