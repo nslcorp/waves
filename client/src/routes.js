@@ -15,8 +15,6 @@ import ProtectedRoute from './shared/potected-route';
 import Cart from './components/dashboard/cart';
 import PageNotFound from './components/page-not-found';
 
-console.log(process.env.NODE_PATH);
-
 const Routes = () => (
   <Layout>
     <Switch>

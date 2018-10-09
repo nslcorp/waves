@@ -1,5 +1,6 @@
 const cloudinary = require('cloudinary');
 const formidable = require('express-formidable');
+const mongoose = require('mongoose');
 
 const BaseController = require('./BaseController');
 const auth = require('../middleware/auth');
@@ -21,9 +22,10 @@ class UserController extends BaseController {
       this.sendResponse
     ];
 
-    this.uploadImage = [auth, admin, formidable, this._uploadToCloudinary];
+    this.uploadImage = [auth, admin, formidable(), this._uploadToCloudinary, this.sendResponse];
+    this.removeImage = [auth, admin, this._removeImage, this.sendResponse];
 
-    this.addToCart = [auth, this._findUserByEmail, this._addToCart];
+    this.addToCart = [auth, this._findUserById, this._addToCart, this.sendResponse];
   }
 
   async _getUserData(req, res, next) {
@@ -74,7 +76,21 @@ class UserController extends BaseController {
       });
     }
 
-    res.user = user;
+    req.user = user;
+    next();
+  }
+
+  async _findUserById(req, res, next) {
+    let user = await User.findOne({ _id: req.user._id });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: 'User was not found'
+      });
+    }
+
+    req.user = user;
     next();
   }
 
@@ -89,9 +105,9 @@ class UserController extends BaseController {
   }
 
   async _generateToken(req, res, next) {
-    user.token = user.token || (await user.generateToken());
+    req.user.token = req.user.token || (await req.user.generateToken());
 
-    if (!user.token) {
+    if (!req.user.token) {
       return res.status(400).send({ success: false, message: 'Generate token error' });
     }
 
@@ -99,7 +115,7 @@ class UserController extends BaseController {
   }
 
   _setCookie(req, res, next) {
-    res.cookie('w_auth', user.token);
+    res.cookie('w_auth', req.user.token);
 
     res.responseData = { success: true };
 
@@ -113,7 +129,7 @@ class UserController extends BaseController {
         resource_type: 'auto'
       });
 
-      res.responseData = {
+      req.responseData = {
         public_id: data.public_id,
         url: data.url
       };
@@ -148,6 +164,17 @@ class UserController extends BaseController {
 
     req.responseData = updatedUser.cart;
     next();
+  }
+
+  async _removeImage(req, res, next) {
+    try {
+      await cloudinary.uploader.destroy(req.query.id);
+
+      req.responseData = { success: true };
+      next();
+    } catch (error) {
+      return res.status(406).json({ success: false, error });
+    }
   }
 }
 

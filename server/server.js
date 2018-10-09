@@ -26,7 +26,6 @@ app.use(cookieParser());
 
 app.use('/api', routes);
 
-// require('./routes/userRoutes')(app);
 require('./routes/brandRoutes')(app);
 require('./routes/woodRoutes')(app);
 require('./routes/productRoutes')(app);

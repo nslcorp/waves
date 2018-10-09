@@ -20,7 +20,7 @@ export const doRegisterUser = (values, history) => async dispatch => {
   try {
     const user = await api.user.post('register', values);
     dispatch({ type: types.REGISTER_USER_SUCCESS, payload: user.data });
-    history.redirect('/dashboard');
+    history.replace('/login');
   } catch (error) {
     dispatch({ type: types.REGISTER_USER_ERROR, payload: error });
   }
