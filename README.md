@@ -1,23 +1,10 @@
 # waves
 
+NOT DONE: need controller refactor.
+NOT DONE: 123 Show products in Cart, Billing, Emailer, Notifications,
+
+
 ## Ecomerce solution for selling Guitars
-
-### Functionality
-Image and Video CDN: https://cloudinary.com/
-
-
-#BackEnd
-* User
-* Product
-* Brand & Wood belongs to product
-
-* auth with email/password. 
-
->Note:  example this feature is available ....<br>
-Use the backtick to refer to a `function()`.
- 
-There is a literal ``backtick (`)`` here.
-
 
 
 ### Services
