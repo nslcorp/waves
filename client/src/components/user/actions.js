@@ -1,6 +1,6 @@
 import * as types from './types';
 
-import api from 'api';
+import api from '../../api';
 import { change } from 'redux-form';
 
 export const doLoginUser = (values, history) => async dispatch => {
