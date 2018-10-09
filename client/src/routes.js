@@ -7,12 +7,12 @@ import Login from './components/auth/login';
 import Register from './components/auth/register';
 import Dashboard from './components/dashboard';
 import Guitars from './components/guitars';
-import AddProduct from 'components/dashboard/admin/add-product';
-import ManageCategories from 'components/dashboard/admin/manage-categories';
-import GuitarDetail from 'components/guitar-detail/index';
-import AuthRoute from 'shared/auth-route';
-import ProtectedRoute from 'shared/potected-route';
-import Cart from 'components/dashboard/cart';
+import AddProduct from './components/dashboard/admin/add-product';
+import ManageCategories from './components/dashboard/admin/manage-categories';
+import GuitarDetail from './components/guitar-detail/index';
+import AuthRoute from './shared/auth-route';
+import ProtectedRoute from './shared/potected-route';
+import Cart from './components/dashboard/cart';
 
 const Routes = () => (
   <Layout>
