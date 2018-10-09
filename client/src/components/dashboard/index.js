@@ -5,7 +5,7 @@ import Button from '../../shared/button';
 
 const Dashboard = props => {
   const { user } = props;
-  console.log(props);
+
   return (
     <DashboardLayout>
       <div>

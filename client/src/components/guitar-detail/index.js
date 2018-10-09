@@ -18,8 +18,6 @@ class GuitarDetail extends Component {
 
     if (this.props.loading) return <h2>Loading...</h2>;
 
-    console.log(this.props.product);
-
     return (
       <Fragment>
         <GuitarHeader />

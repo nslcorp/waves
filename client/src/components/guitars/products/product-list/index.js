@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Card from '../../../../shared/cards/card';
 
 const CardBlock = props => {
-  console.log(props);
   if (props.loading) return <h2>Loading...</h2>;
 
   if (!props.list.length) return <div className="no_result">Sorry, no results</div>;
