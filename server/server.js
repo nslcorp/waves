@@ -23,6 +23,7 @@ cloudinary.config({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(express.static('client/build'));
 
 // app.use('/api', routes);
 
@@ -30,6 +31,13 @@ require('./routes/userRoutes')(app);
 require('./routes/brandRoutes')(app);
 require('./routes/woodRoutes')(app);
 require('./routes/productRoutes')(app);
+
+if (process.env.NODE_ENV === 'production') {
+  const path = require('path');
+  app.get('/*', (req, res) => {
+    res.sendfile(path.resolve(__dirname, '../client', 'build', 'index.html'));
+  });
+}
 
 const port = process.env.PORT || '3002';
 app.listen(port, () => console.log('Server running on: ' + port));
