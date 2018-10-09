@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import { InputFieldGroup } from 'shared/form-field/index';
+import { InputFieldGroup } from './shared/form-field/index';
 
 const AddCategory = props => {
   const { handleSubmit, submitting, name: categoryName } = props;

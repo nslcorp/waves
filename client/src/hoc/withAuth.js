@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getLoading, getUser } from 'components/user/reducer';
-import { doAuth } from 'components/user/actions';
+import { getLoading, getUser } from './components/user/reducer';
+import { doAuth } from './components/user/actions';
 
 export default BaseComponent => {
   class AuthHOC extends Component {

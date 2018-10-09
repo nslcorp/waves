@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import UserLayout from 'components/dashboard/dashboard-layout/index';
+import UserLayout from './components/dashboard/dashboard-layout/index';
 import Category from './category/index';
-import { getBrand, getWood } from 'components/guitars/filters/reducer';
-import { doGetBrands, doGetWoods, doAddBrand, doAddWood } from 'components/guitars/filters/actions';
+import { getBrand, getWood } from './components/guitars/filters/reducer';
+import {
+  doGetBrands,
+  doGetWoods,
+  doAddBrand,
+  doAddWood
+} from './components/guitars/filters/actions';
 
 class ManageCategories extends Component {
   componentDidMount() {

@@ -5,7 +5,7 @@ import { doGetProduct } from './actions';
 import GuitarHeader from './header';
 import GuitarInfo from './info';
 import ImageSection from './image-section';
-import { doAddToCart } from 'components/user/actions';
+import { doAddToCart } from './components/user/actions';
 
 class GuitarDetail extends Component {
   componentDidMount() {

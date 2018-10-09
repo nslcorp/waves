@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from 'shared/cards/card';
+import Card from './shared/cards/card';
 
 const CardBlock = props => {
   console.log(props);
