@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cross-env NODE_PATH=src/ react-scripts build",
+    "build": ".env react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "analyse": "source-map-explorer build/static/js/main.* --only-mapped"
